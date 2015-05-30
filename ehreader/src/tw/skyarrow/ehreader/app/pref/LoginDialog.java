@@ -6,11 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import com.google.analytics.tracking.android.MapBuilder;
-
 import java.io.IOException;
 
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.util.LoginHelper;
 
@@ -69,10 +66,6 @@ public class LoginDialog extends DialogFragment {
                 DialogFragment dialog = new LoginErrorDialog();
                 dialog.show(getActivity().getSupportFragmentManager(), LoginErrorDialog.TAG);
             }
-
-            BaseApplication.getTracker().send(MapBuilder.createTiming(
-                    "resources", System.currentTimeMillis() - startLoadAt, "login", null
-            ).build());
 
             dismiss();
         }

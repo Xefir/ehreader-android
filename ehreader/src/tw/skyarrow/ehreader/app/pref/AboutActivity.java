@@ -3,10 +3,6 @@ package tw.skyarrow.ehreader.app.pref;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 
 /**
@@ -19,15 +15,5 @@ public class AboutActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
     }
 }

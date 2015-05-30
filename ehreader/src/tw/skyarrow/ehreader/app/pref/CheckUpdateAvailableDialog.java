@@ -8,10 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.util.UpdateHelper;
 
@@ -35,11 +31,6 @@ public class CheckUpdateAvailableDialog extends DialogFragment {
                 .setMessage(getString(R.string.check_update_available_msg, version))
                 .setPositiveButton(R.string.update, onSubmitClick)
                 .setNegativeButton(R.string.cancel, null);
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
 
         return dialog.create();
     }

@@ -7,13 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.dao.query.QueryBuilder;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.db.DaoMaster;
 import tw.skyarrow.ehreader.db.DaoSession;
@@ -52,15 +48,5 @@ public class MainFragmentStar extends MainFragmentBase {
         }
 
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
     }
 }

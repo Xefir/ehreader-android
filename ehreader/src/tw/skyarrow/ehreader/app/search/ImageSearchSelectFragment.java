@@ -16,8 +16,6 @@ import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.MapBuilder;
-
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,7 +34,6 @@ import java.io.IOException;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.Constant;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.DataLoader;
@@ -111,10 +108,6 @@ public class ImageSearchSelectFragment extends Fragment {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
 
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "select image search", null
-        ).build());
-
         startActivityForResult(intent, PHOTO_SELECT);
     }
 
@@ -123,10 +116,6 @@ public class ImageSearchSelectFragment extends Fragment {
         if (uploadTask != null && !uploadTask.isCancelled() && uploadTask.getStatus() != AsyncTask.Status.FINISHED) {
             uploadTask.cancel(true);
         }
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "cancel image search", null
-        ).build());
     }
 
     @Override
@@ -239,10 +228,6 @@ public class ImageSearchSelectFragment extends Fragment {
                 builder.appendQueryParameter("fs_covers", "1");
             }
 
-            BaseApplication.getTracker().send(MapBuilder.createTiming(
-                    "resources", System.currentTimeMillis() - startLoadAt, "upload image search", null
-            ).build());
-
             ((ImageSearchActivity) getActivity()).displaySelectResult(builder.build().toString(), backStack);
         }
 
@@ -298,9 +283,5 @@ public class ImageSearchSelectFragment extends Fragment {
         errorView.setVisibility(View.GONE);
         retryBtn.setVisibility(View.GONE);
         fileUpload();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "retry image search", null
-        ).build());
     }
 }

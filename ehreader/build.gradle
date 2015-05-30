@@ -1,14 +1,14 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
         versionCode 8
-        versionName '0.4.0'
+        versionName '0.4.1'
     }
 
     signingConfigs {
@@ -58,17 +58,15 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:19.0.+'
-    compile files('libs/libGoogleAnalyticsServices.jar')
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
     compile 'de.greenrobot:greendao:1.3.7'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'org.apache.httpcomponents:httpcore:4.4'
-    compile 'org.apache.httpcomponents:httpmime:4.3.6'
-    compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile 'org.apache.httpcomponents:httpmime:4.4.1'
+    compile 'com.jakewharton:butterknife:6.1.0'
     compile 'org.apache.commons:commons-io:1.3.2'
     compile 'com.edmodo:cropper:1.0.1'
     compile project(':android-stackblur:StackBlur')
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
-    compile 'com.github.zafarkhaja:java-semver:0.8.0'
-    compile files('libs/GoogleAdMobAdsSdk-6.4.1.jar')
+    compile 'com.github.zafarkhaja:java-semver:0.9.0'
 }

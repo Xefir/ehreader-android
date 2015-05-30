@@ -7,14 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
 import java.util.List;
 
 import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.event.EventBus;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.db.DaoMaster;
 import tw.skyarrow.ehreader.db.DaoSession;
@@ -68,11 +64,6 @@ public class PhotoBookmarkDialog extends DialogFragment {
         }
 
         dialog.setTitle(R.string.bookmark_list);
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
 
         return dialog.create();
     }

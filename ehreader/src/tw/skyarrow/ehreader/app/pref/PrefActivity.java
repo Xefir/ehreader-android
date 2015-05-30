@@ -7,10 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 
 /**
@@ -32,16 +28,6 @@ public class PrefActivity extends FragmentActivity {
 
         ft.replace(R.id.container, fragment);
         ft.commit();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
     }
 
     @Override

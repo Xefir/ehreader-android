@@ -17,16 +17,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
 import tw.skyarrow.ehreader.api.DataLoader;
@@ -120,16 +116,6 @@ public class MainFragmentWeb extends Fragment implements InfiniteScrollListener.
         getGalleryList(0);
 
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
     }
 
     @Override
@@ -244,10 +230,6 @@ public class MainFragmentWeb extends Fragment implements InfiniteScrollListener.
             }
 
             stopLoading();
-
-            BaseApplication.getTracker().send(MapBuilder.createTiming(
-                    "resources", System.currentTimeMillis() - startLoadAt, "load index", null
-            ).build());
         }
     }
 
@@ -319,10 +301,6 @@ public class MainFragmentWeb extends Fragment implements InfiniteScrollListener.
         getActivity().invalidateOptionsMenu();
         errorView.setVisibility(View.GONE);
         footerRetry.setVisibility(View.GONE);
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "refresh", null
-        ).build());
 
         getGalleryList(0);
     }

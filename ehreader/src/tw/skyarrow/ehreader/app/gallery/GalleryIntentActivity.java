@@ -12,15 +12,12 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.MapBuilder;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
 import tw.skyarrow.ehreader.api.DataLoader;
@@ -159,10 +156,6 @@ public class GalleryIntentActivity extends FragmentActivity {
                 retryBtn.setVisibility(View.VISIBLE);
             } else {
                 showGallery(gallery);
-
-                BaseApplication.getTracker().send(MapBuilder.createTiming(
-                        "resources", System.currentTimeMillis() - startLoadAt, "load gallery info", null
-                ).build());
             }
         }
     }
@@ -177,9 +170,5 @@ public class GalleryIntentActivity extends FragmentActivity {
     @OnClick(R.id.retry)
     void onRetryBtnClick() {
         getGalleryInfo();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "retry loading gallery info", null
-        ).build());
     }
 }

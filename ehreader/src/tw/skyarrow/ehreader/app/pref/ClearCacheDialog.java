@@ -6,11 +6,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 
 /**
@@ -27,11 +24,6 @@ public class ClearCacheDialog extends DialogFragment {
                 .setMessage(R.string.clear_cache_msg)
                 .setPositiveButton(R.string.ok, onSubmitClick)
                 .setNegativeButton(R.string.cancel, null);
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
 
         return dialog.create();
     }

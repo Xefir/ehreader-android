@@ -6,10 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 
 /**
@@ -26,11 +22,6 @@ public class CheckUpdateErrorDialog extends DialogFragment {
                 .setMessage(R.string.check_update_failed_msg)
                 .setPositiveButton(R.string.retry, onSubmitClick)
                 .setNegativeButton(R.string.cancel, null);
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
 
         return dialog.create();
     }

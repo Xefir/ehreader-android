@@ -27,8 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.enrique.stackblur.StackBlurManager;
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -44,7 +42,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.app.download.DownloadConfirmDialog;
 import tw.skyarrow.ehreader.app.download.RedownloadDialog;
@@ -142,16 +139,6 @@ public class GalleryActivity extends MainDrawerActivity {
             showGallery();
             invalidateOptionsMenu();
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
     }
 
     @Override
@@ -268,7 +255,7 @@ public class GalleryActivity extends MainDrawerActivity {
             StackBlurManager blurManager = new StackBlurManager(bitmap);
             runOnUiThread(new UpdateCoverRunnable(bitmap, blurManager.processNatively(10)));
         }
-    };
+    }
 
     private class UpdateCoverRunnable implements Runnable {
         private Bitmap bitmap;
@@ -411,10 +398,6 @@ public class GalleryActivity extends MainDrawerActivity {
         }
 
         invalidateOptionsMenu();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "star", null
-        ).build());
     }
 
     private void showToast(int res) {
@@ -449,10 +432,6 @@ public class GalleryActivity extends MainDrawerActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         boolean isLoggedIn = LoginHelper.getInstance(this).isLoggedIn();
 
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "open in browser", null
-        ).build());
-
         intent.setData(gallery.getUri(isLoggedIn));
         startActivity(intent);
     }
@@ -463,10 +442,6 @@ public class GalleryActivity extends MainDrawerActivity {
         Bundle args = new Bundle();
 
         args.putLong("id", gallery.getId());
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "read", null
-        ).build());
 
         intent.putExtras(args);
         startActivity(intent);

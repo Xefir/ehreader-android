@@ -21,7 +21,7 @@ import tw.skyarrow.ehreader.event.ListUpdateEvent;
 import tw.skyarrow.ehreader.util.ActionBarHelper;
 import tw.skyarrow.ehreader.util.LoginHelper;
 
-public class MainActivity extends AdActivity {
+public class MainActivity extends MainDrawerActivity {
     public static final String TAG = "MainActivity";
 
     public static final String EXTRA_TAB = "tab";
@@ -52,7 +52,6 @@ public class MainActivity extends AdActivity {
         }
 
         changeTab(tab);
-        setupAd();
     }
 
     @Override

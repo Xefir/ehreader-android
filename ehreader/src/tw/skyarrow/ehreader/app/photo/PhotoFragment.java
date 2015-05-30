@@ -23,7 +23,6 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.MapBuilder;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -37,7 +36,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.DataLoader;
 import tw.skyarrow.ehreader.app.search.ImageSearchActivity;
@@ -321,10 +319,6 @@ public class PhotoFragment extends Fragment {
             attacher.setOnViewTapListener(onPhotoTap);
 
             getActivity().invalidateOptionsMenu();
-
-            BaseApplication.getTracker().send(MapBuilder.createTiming(
-                    "resources", System.currentTimeMillis() - startLoadAt, "load photo", null
-            ).build());
         }
 
         @Override
@@ -365,10 +359,6 @@ public class PhotoFragment extends Fragment {
         }
 
         callService();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "retry loading photo", null
-        ).build());
     }
 
     private void setBookmark(boolean mark) {
@@ -382,10 +372,6 @@ public class PhotoFragment extends Fragment {
         }
 
         getActivity().invalidateOptionsMenu();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "bookmark", null
-        ).build());
     }
 
     private void showToast(int res) {
@@ -395,10 +381,6 @@ public class PhotoFragment extends Fragment {
     private void setAsWallpaper() {
         Intent intent = new Intent(getActivity(), CropActivity.class);
 
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "set as wallpaper", null
-        ).build());
-
         intent.setData(getPhotoUri());
         startActivity(intent);
     }
@@ -406,10 +388,6 @@ public class PhotoFragment extends Fragment {
     private void findSimilar() {
         Intent intent = new Intent(getActivity(), ImageSearchActivity.class);
         Bundle args = new Bundle();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "find similar", null
-        ).build());
 
         args.putLong(ImageSearchActivity.EXTRA_PHOTO, photo.getId());
         intent.putExtras(args);
@@ -419,10 +397,6 @@ public class PhotoFragment extends Fragment {
     private void openInBrowser() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
 
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "open in browser", null
-        ).build());
-
         intent.setData(photo.getUri());
         startActivity(intent);
     }
@@ -430,10 +404,6 @@ public class PhotoFragment extends Fragment {
     private void savePhoto() {
         DialogFragment dialog = new PhotoSaveDialog();
         Bundle args = new Bundle();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "save photo", null
-        ).build());
 
         args.putLong(PhotoSaveDialog.EXTRA_PHOTO, photo.getId());
         dialog.setArguments(args);
@@ -443,10 +413,6 @@ public class PhotoFragment extends Fragment {
     private void deletePhoto() {
         DialogFragment dialog = new PhotoDeleteConfirmDialog();
         Bundle args = new Bundle();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "delete photo", null
-        ).build());
 
         args.putLong(PhotoDeleteConfirmDialog.EXTRA_PHOTO, photo.getId());
         dialog.setArguments(args);

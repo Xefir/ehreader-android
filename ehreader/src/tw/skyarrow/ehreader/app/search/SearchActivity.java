@@ -11,12 +11,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
-import tw.skyarrow.ehreader.app.main.AdActivity;
+import tw.skyarrow.ehreader.app.main.MainDrawerActivity;
 import tw.skyarrow.ehreader.app.main.MainFragmentWeb;
 import tw.skyarrow.ehreader.provider.SearchSuggestionProvider;
 import tw.skyarrow.ehreader.util.ActionBarHelper;
@@ -24,7 +20,7 @@ import tw.skyarrow.ehreader.util.ActionBarHelper;
 /**
  * Created by SkyArrow on 2014/1/28.
  */
-public class SearchActivity extends AdActivity {
+public class SearchActivity extends MainDrawerActivity {
     private static final String TAG = "SearchActivity";
 
     private String query;
@@ -59,18 +55,7 @@ public class SearchActivity extends AdActivity {
 
             ft.replace(R.id.container, fragment);
             ft.commit();
-            setupAd();
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        MapBuilder builder = MapBuilder.createAppView();
-        builder.set(Fields.SCREEN_NAME, TAG);
-
-        BaseApplication.getTracker().send(builder.build());
     }
 
     @Override

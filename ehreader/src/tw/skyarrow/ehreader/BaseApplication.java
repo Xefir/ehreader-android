@@ -4,10 +4,6 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.google.analytics.tracking.android.ExceptionReporter;
-import com.google.analytics.tracking.android.GAServiceManager;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.Tracker;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -20,7 +16,6 @@ import tw.skyarrow.ehreader.util.UpdateHelper;
  * Created by SkyArrow on 2014/1/25.
  */
 public class BaseApplication extends Application {
-    private static Tracker tracker;
     private SharedPreferences preferences;
 
     @Override
@@ -28,7 +23,6 @@ public class BaseApplication extends Application {
         super.onCreate();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        initTracker();
         initImageLoader();
         initAutoUpdate();
         setFolderVisibility();
@@ -37,24 +31,6 @@ public class BaseApplication extends Application {
     @Override
     public void onLowMemory() {
         ImageLoader.getInstance().clearMemoryCache();
-    }
-
-    private void initTracker() {
-        GoogleAnalytics ga = GoogleAnalytics.getInstance(this);
-        tracker = ga.getTracker(getString(R.string.ga_trackingId));
-        boolean reportUncaughtExceptions = getResources().getBoolean(R.bool.ga_reportUncaughtExceptions);
-
-        if (reportUncaughtExceptions) {
-            Thread.setDefaultUncaughtExceptionHandler(new ExceptionReporter(
-                    tracker, GAServiceManager.getInstance(), Thread.getDefaultUncaughtExceptionHandler(), this));
-        }
-
-        ga.setDefaultTracker(tracker);
-        ga.setDryRun(BuildConfig.DEBUG);
-    }
-
-    public static Tracker getTracker() {
-        return tracker;
     }
 
     private void initImageLoader() {

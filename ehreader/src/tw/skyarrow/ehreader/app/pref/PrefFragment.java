@@ -244,7 +244,7 @@ public class PrefFragment extends PreferenceFragment {
             dialog.show(((FragmentActivity) getActivity()).getSupportFragmentManager(), tag);
             return true;
         }
-    };
+    }
 
     private Preference findPreferenceByResource(int id) {
         return findPreference(getString(id));

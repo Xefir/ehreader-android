@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.MapBuilder;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,7 +21,6 @@ import java.util.regex.Pattern;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import tw.skyarrow.ehreader.BaseApplication;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
 import tw.skyarrow.ehreader.api.ApiErrorCode;
@@ -151,10 +148,6 @@ public class ImageSearchPhotoFragment extends Fragment {
             Uri.Builder builder = Uri.parse(url).buildUpon();
             builder.appendQueryParameter("fs_similar", "1");
 
-            BaseApplication.getTracker().send(MapBuilder.createTiming(
-                    "resources", System.currentTimeMillis() - startLoadAt, "load image search url of photo", null
-            ).build());
-
             ((ImageSearchActivity) getActivity()).displayPhotoResult(builder.build().toString());
         }
     }
@@ -173,9 +166,5 @@ public class ImageSearchPhotoFragment extends Fragment {
         errorView.setVisibility(View.GONE);
         retryBtn.setVisibility(View.GONE);
         searchPhoto();
-
-        BaseApplication.getTracker().send(MapBuilder.createEvent(
-                "UI", "button", "retry image search", null
-        ).build());
     }
 }
