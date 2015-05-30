@@ -125,6 +125,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".app.pref.PrefActivity"/>
         </activity>
+        <activity android:name=".app.main.MainDrawerActivity"
+                  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <provider
             android:name=".provider.PhotoProvider"
             android:authorities="tw.skyarrow.ehreader.provider.PhotoProvider"

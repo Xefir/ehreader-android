@@ -62,8 +62,10 @@ public class DataLoader {
     public static final Pattern pGalleryUrl = Pattern.compile("http://(g\\.e-|ex)hentai\\.org/g/(\\d+)/(\\w+)");
     public static final Pattern pPhotoUrl = Pattern.compile("http://(g\\.e-|ex)hentai\\.org/s/(\\w+?)/(\\d+)-(\\d+)");
     public static final Pattern pShowkey = Pattern.compile("var showkey.*=.*\"([\\w-]+?)\";");
-    public static final Pattern pImageSrc = Pattern.compile("<img id=\"img\" src=\"(.+)/(.+?)\"");
+    // Worst hack ever, but no choice and will be broke if e-hentai change the layout
+    public static final Pattern pImageSrc = Pattern.compile("<img( id=\"img\"|) src=\"http://(?!g\\.e-hentai\\.org|ehgt\\.org|exhentai\\.org)([^=]+)=([^/]+)/(.+?)\" style=");
     public static final Pattern pGalleryURL = Pattern.compile("<a href=\"http://(g\\.e-|ex)hentai\\.org/g/(\\d+)/(\\w+)/\" onmouseover");
+    public static final Pattern pSpecImage = Pattern.compile("<div>([^:]+) :: (\\d+) x (\\d+) :: ([A-Z0-9 \\.]+)</div>");
 
     private DataLoader(Context context) {
         this.context = context;
@@ -283,12 +285,12 @@ public class DataLoader {
 
         try {
             JSONObject json = getPhotoRaw(gallery, photo);
-            Matcher matcher = pImageSrc.matcher(json.getString("i3"));
+            Matcher matcher = pImageSrc.matcher(json.getString("i"));
             String filename = "";
 
             while (matcher.find()) {
-                filename = matcher.group(2);
-                src = matcher.group(1) + "/" + filename;
+                filename = matcher.group(4);
+                src = "http://" + matcher.group(2) + "=" + matcher.group(3) + "/" + filename;
             }
 
             if (src.isEmpty() || filename.isEmpty()) {
@@ -310,26 +312,42 @@ public class DataLoader {
 
     public JSONObject getPhotoRaw(Gallery gallery, Photo photo) throws ApiCallException {
         try {
-            String showkey = gallery.getShowkey();
+            String url = photo.getUrl(isLoggedIn());
 
-            if (showkey == null || showkey.isEmpty()) {
-                showkey = getShowkey(gallery);
+            L.d("Get show key: %s", url);
+
+            HttpGet httpGet = new HttpGet(url);
+            HttpResponse response = getHttpResponse(httpGet);
+            String content = HttpRequestHelper.readResponse(response);
+
+            L.d("Get show key callback: %s", content);
+
+            if (content == null) {
+                throw new ApiCallException(ApiErrorCode.SHOWKEY_EXPIRED, url, response);
+            } else if (content.contains("This gallery is pining for the fjords")) {
+                throw new ApiCallException(ApiErrorCode.GALLERY_PINNED, url, response);
+            } else if (content.equals("Invalid page.")) {
+                throw new ApiCallException(ApiErrorCode.SHOWKEY_EXPIRED, url, response);
             }
 
             JSONObject json = new JSONObject();
 
-            json.put("gid", gallery.getId());
-            json.put("page", photo.getPage());
-            json.put("imgkey", photo.getToken());
-            json.put("showkey", showkey);
+            Matcher m1 = pSpecImage.matcher(content);
+            if (m1.find()) {
+                json.put("si", m1.group(4));
+                json.put("x", m1.group(2));
+                json.put("y", m1.group(3));
+                json.put("f", m1.group(1));
+            }
 
-            L.d("Show page request: %s", json.toString());
+            Matcher m2 = pImageSrc.matcher(content);
+            if (m2.find()) {
+                json.put("i", m2.group(0));
+            }
 
-            JSONObject result = callApi("showpage", json);
-
-            L.d("Show page callback: %s", result.toString());
-
-            return result;
+            return json;
+        } catch (IOException e) {
+            throw new ApiCallException(ApiErrorCode.IO_ERROR, e);
         } catch (JSONException e) {
             throw new ApiCallException(ApiErrorCode.JSON_ERROR, e);
         }
