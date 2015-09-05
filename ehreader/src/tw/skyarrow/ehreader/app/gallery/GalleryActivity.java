@@ -26,7 +26,6 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.enrique.stackblur.StackBlurManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -57,6 +56,7 @@ import tw.skyarrow.ehreader.db.GalleryDao;
 import tw.skyarrow.ehreader.util.ActionBarHelper;
 import tw.skyarrow.ehreader.util.DatabaseHelper;
 import tw.skyarrow.ehreader.util.LoginHelper;
+import tw.skyarrow.ehreader.util.StackBlur;
 
 /**
  * Created by SkyArrow on 2014/1/27.
@@ -252,8 +252,7 @@ public class GalleryActivity extends MainDrawerActivity {
 
         @Override
         public void run() {
-            StackBlurManager blurManager = new StackBlurManager(bitmap);
-            runOnUiThread(new UpdateCoverRunnable(bitmap, blurManager.processNatively(10)));
+            runOnUiThread(new UpdateCoverRunnable(bitmap, StackBlur.fastblur(bitmap, 1, 10)));
         }
     }
 

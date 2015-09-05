@@ -1,3 +1,2 @@
 include ':ehreader'
 include ':DaoGenerator'
-include ':android-stackblur:StackBlur'
