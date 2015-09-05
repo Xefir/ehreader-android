@@ -18,25 +18,10 @@ The best E-Hentai Reader for Android ever!
 <a href="https://raw.github.com/tommy351/ehreader-android/master/images/screenshot-gallery.png"><img src="https://raw.github.com/tommy351/ehreader-android/master/images/screenshot-gallery.png" width="360" height="640"></a>
 <a href="https://raw.github.com/tommy351/ehreader-android/master/images/screenshot-photo.png"><img src="https://raw.github.com/tommy351/ehreader-android/master/images/screenshot-photo.png" width="360" height="640"></a>
 
-## Development
-
 ### Requirements
 
 - [Android SDK](http://developer.android.com/sdk/index.html) (API 19+)
-- [Android NDK](http://developer.android.com/tools/sdk/ndk/index.html)
 - [Android Studio](http://developer.android.com/sdk/installing/studio.html)
-
-### Installation
-
-Run the following commands and open the project in Android Studio.
-
-``` bash
-$ git clone https://github.com/tommy351/ehreader-android.git
-$ cd ehreader-android
-$ git submodule update --init
-$ cd android-stackblur/StackBlur
-$ ndk-build
-```
 
 ### Generating DAO
 
@@ -62,4 +47,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[Download]: https://github.com/tommy351/ehreader-android/releases/download/0.4.0/ehreader-release.apk
+[Download]: https://github.com/Xefir/ehreader-android/releases
