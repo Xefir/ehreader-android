@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.event.EventBus;
 import tw.skyarrow.ehreader.R;
@@ -37,13 +37,13 @@ import tw.skyarrow.ehreader.widget.InfiniteScrollListener;
  * Created by SkyArrow on 2014/1/26.
  */
 public class MainFragmentDownload extends Fragment implements AbsListView.OnScrollListener {
-    @InjectView(R.id.list)
+    @Bind(R.id.list)
     ListView listView;
 
-    @InjectView(R.id.error)
+    @Bind(R.id.error)
     TextView errorView;
 
-    @InjectView(R.id.loading)
+    @Bind(R.id.loading)
     ProgressBar loadingView;
 
     public static final String TAG = "MainFragmentDownload";
@@ -59,7 +59,7 @@ public class MainFragmentDownload extends Fragment implements AbsListView.OnScro
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
 
         bus = EventBus.getDefault();

@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
@@ -38,13 +38,13 @@ import tw.skyarrow.ehreader.util.NetworkHelper;
  * Created by SkyArrow on 2014/2/4.
  */
 public class ImageSearchPhotoFragment extends Fragment {
-    @InjectView(R.id.loading)
+    @Bind(R.id.loading)
     ProgressBar loadingView;
 
-    @InjectView(R.id.error)
+    @Bind(R.id.error)
     TextView errorView;
 
-    @InjectView(R.id.retry)
+    @Bind(R.id.retry)
     Button retryBtn;
 
     private static final Pattern pSearchUrl = Pattern.compile("<a href=\"http://(g.e-|ex)hentai.org/\\?f_shash=(.+?)\">");
@@ -59,7 +59,7 @@ public class ImageSearchPhotoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_intent, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         Bundle args = getArguments();
         photoId = args.getLong("photo");

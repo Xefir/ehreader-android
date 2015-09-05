@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.app.BaseListAdapter;
 
@@ -67,14 +67,14 @@ public class DrawerHeaderAdapter extends BaseListAdapter<DrawerItem> {
     }
 
     static final class ViewHolder {
-        @InjectView(R.id.name)
+        @Bind(R.id.name)
         TextView name;
 
-        @InjectView(R.id.icon)
+        @Bind(R.id.icon)
         ImageView icon;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

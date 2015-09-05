@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
@@ -33,13 +33,13 @@ import tw.skyarrow.ehreader.util.L;
  * Created by SkyArrow on 2014/2/9.
  */
 public class GalleryIntentActivity extends FragmentActivity {
-    @InjectView(R.id.loading)
+    @Bind(R.id.loading)
     ProgressBar loadingView;
 
-    @InjectView(R.id.error)
+    @Bind(R.id.error)
     TextView errorText;
 
-    @InjectView(R.id.retry)
+    @Bind(R.id.retry)
     Button retryBtn;
 
     public static final String TAG = "GalleryIntentActivity";
@@ -56,7 +56,7 @@ public class GalleryIntentActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intent);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         DatabaseHelper helper = DatabaseHelper.getInstance(this);
         SQLiteDatabase db = helper.getWritableDatabase();

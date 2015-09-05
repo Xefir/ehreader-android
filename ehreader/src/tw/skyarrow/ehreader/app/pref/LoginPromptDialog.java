@@ -9,17 +9,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import tw.skyarrow.ehreader.R;
 
 /**
  * Created by SkyArrow on 2014/2/4.
  */
 public class LoginPromptDialog extends DialogFragment {
-    @InjectView(R.id.username)
+    @Bind(R.id.username)
     TextView usernameText;
 
-    @InjectView(R.id.password)
+    @Bind(R.id.password)
     TextView passwordText;
 
     public static final String TAG = "LoginPromptDialog";
@@ -28,7 +28,7 @@ public class LoginPromptDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_login, null);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         builder.setTitle(R.string.login_title)
                 .setView(view)

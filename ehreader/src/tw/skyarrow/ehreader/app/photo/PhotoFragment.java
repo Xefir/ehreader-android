@@ -33,7 +33,7 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import java.io.File;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import tw.skyarrow.ehreader.R;
@@ -55,16 +55,16 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  * Created by SkyArrow on 2014/1/31.
  */
 public class PhotoFragment extends Fragment {
-    @InjectView(R.id.page)
+    @Bind(R.id.page)
     TextView pageText;
 
-    @InjectView(R.id.progress)
+    @Bind(R.id.progress)
     ProgressBar progressBar;
 
-    @InjectView(R.id.image)
+    @Bind(R.id.image)
     ImageView imageView;
 
-    @InjectView(R.id.retry)
+    @Bind(R.id.retry)
     Button retryBtn;
 
     public static final String TAG = "PhotoFragment";
@@ -90,7 +90,7 @@ public class PhotoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photo, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
         EventBus.getDefault().register(this);
 

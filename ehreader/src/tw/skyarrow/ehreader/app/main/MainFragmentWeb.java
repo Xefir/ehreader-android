@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import de.greenrobot.event.EventBus;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
@@ -38,16 +38,16 @@ import tw.skyarrow.ehreader.widget.InfiniteScrollListener;
 public class MainFragmentWeb extends Fragment implements InfiniteScrollListener.OnScrollToEndListener,
         InfiniteScrollListener.OnScrollStateChangedListener, AdapterView.OnItemClickListener {
 
-    @InjectView(R.id.list)
+    @Bind(R.id.list)
     ListView listView;
 
-    @InjectView(R.id.loading)
+    @Bind(R.id.loading)
     ProgressBar progressBar;
 
-    @InjectView(R.id.error)
+    @Bind(R.id.error)
     TextView errorView;
 
-    @InjectView(R.id.retry)
+    @Bind(R.id.retry)
     Button retryBtn;
 
     public static final String TAG = "MainFragmentWeb";
@@ -75,7 +75,7 @@ public class MainFragmentWeb extends Fragment implements InfiniteScrollListener.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
         bus = EventBus.getDefault();
         bus.register(this);

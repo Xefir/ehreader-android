@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.util.L;
 
@@ -29,7 +29,7 @@ import tw.skyarrow.ehreader.util.L;
  * Created by SkyArrow on 2014/2/9.
  */
 public class CropActivity extends FragmentActivity {
-    @InjectView(R.id.image)
+    @Bind(R.id.image)
     CropImageView imageView;
 
     public static final String TAG = "CropActivity";
@@ -40,7 +40,7 @@ public class CropActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         ActionBar actionBar = getActionBar();
 

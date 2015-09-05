@@ -32,7 +32,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import tw.skyarrow.ehreader.Constant;
 import tw.skyarrow.ehreader.R;
@@ -45,31 +45,31 @@ import tw.skyarrow.ehreader.util.ObservableHttpEntity;
  * Created by SkyArrow on 2014/1/29.
  */
 public class ImageSearchSelectFragment extends Fragment {
-    @InjectView(R.id.select)
+    @Bind(R.id.select)
     Button selectBtn;
 
-    @InjectView(R.id.progress_view)
+    @Bind(R.id.progress_view)
     View progressView;
 
-    @InjectView(R.id.progress_bar)
+    @Bind(R.id.progress_bar)
     ProgressBar progressBar;
 
-    @InjectView(R.id.progress_text)
+    @Bind(R.id.progress_text)
     TextView progressText;
 
-    @InjectView(R.id.cancel)
+    @Bind(R.id.cancel)
     Button cancelBtn;
 
-    @InjectView(R.id.similar)
+    @Bind(R.id.similar)
     CheckBox similarSearch;
 
-    @InjectView(R.id.only_cover)
+    @Bind(R.id.only_cover)
     CheckBox onlyCover;
 
-    @InjectView(R.id.retry)
+    @Bind(R.id.retry)
     Button retryBtn;
 
-    @InjectView(R.id.error)
+    @Bind(R.id.error)
     TextView errorView;
 
     public static final String TAG = "ImageSearchSelectFragment";
@@ -87,7 +87,7 @@ public class ImageSearchSelectFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.image_search_select, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         Bundle args = getArguments();
         loggedIn = LoginHelper.getInstance(getActivity()).isLoggedIn();

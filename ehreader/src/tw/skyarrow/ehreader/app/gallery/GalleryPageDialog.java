@@ -11,7 +11,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.app.photo.PhotoActivity;
 
@@ -19,13 +19,13 @@ import tw.skyarrow.ehreader.app.photo.PhotoActivity;
  * Created by SkyArrow on 2014/3/2.
  */
 public class GalleryPageDialog extends DialogFragment {
-    @InjectView(R.id.picker)
+    @Bind(R.id.picker)
     NumberPicker picker;
 
-    @InjectView(R.id.picker_prefix)
+    @Bind(R.id.picker_prefix)
     TextView pickerPrefix;
 
-    @InjectView(R.id.picker_suffix)
+    @Bind(R.id.picker_suffix)
     TextView pickerSuffix;
 
     public static final String TAG = "GalleryPageDialog";
@@ -40,7 +40,7 @@ public class GalleryPageDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         View view = getActivity().getLayoutInflater().inflate(R.layout.choose_page, null);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         Bundle args = getArguments();
         galleryId = args.getLong(EXTRA_GALLERY);

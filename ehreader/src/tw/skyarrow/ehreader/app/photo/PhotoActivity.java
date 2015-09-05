@@ -40,7 +40,7 @@ import android.widget.TextView;
 import java.util.Date;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import de.greenrobot.event.EventBus;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.api.ApiCallException;
@@ -58,19 +58,19 @@ import tw.skyarrow.ehreader.util.DatabaseHelper;
  * Created by SkyArrow on 2014/1/31.
  */
 public class PhotoActivity extends FragmentActivity implements View.OnSystemUiVisibilityChangeListener {
-    @InjectView(R.id.pager)
+    @Bind(R.id.pager)
     ViewPager pager;
 
-    @InjectView(R.id.header)
+    @Bind(R.id.header)
     View headerView;
 
-    @InjectView(R.id.seekbar)
+    @Bind(R.id.seekbar)
     SeekBar seekBar;
 
-    @InjectView(R.id.seekbar_area)
+    @Bind(R.id.seekbar_area)
     View seekBarArea;
 
-    @InjectView(R.id.hint)
+    @Bind(R.id.hint)
     TextView hintText;
 
     public static final String TAG = "PhotoActivity";
@@ -98,7 +98,7 @@ public class PhotoActivity extends FragmentActivity implements View.OnSystemUiVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         bus = EventBus.getDefault();
         bus.register(this);
 

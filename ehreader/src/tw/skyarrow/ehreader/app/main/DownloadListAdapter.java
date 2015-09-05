@@ -18,7 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.app.BaseListAdapter;
 import tw.skyarrow.ehreader.app.download.DownloadContextMenu;
@@ -102,23 +102,23 @@ public class DownloadListAdapter extends BaseListAdapter<Download> {
     }
 
     static final class ViewHolder {
-        @InjectView(R.id.cover)
+        @Bind(R.id.cover)
         ImageView cover;
 
-        @InjectView(R.id.title)
+        @Bind(R.id.title)
         TextView title;
 
-        @InjectView(R.id.progress_bar)
+        @Bind(R.id.progress_bar)
         ProgressBar progressBar;
 
-        @InjectView(R.id.progress_text)
+        @Bind(R.id.progress_text)
         TextView progressText;
 
-        @InjectView(R.id.feature)
+        @Bind(R.id.feature)
         ImageButton featureBtn;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

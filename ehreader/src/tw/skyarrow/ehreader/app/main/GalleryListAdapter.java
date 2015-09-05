@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.app.BaseListAdapter;
 import tw.skyarrow.ehreader.db.Gallery;
@@ -67,20 +67,20 @@ public class GalleryListAdapter extends BaseListAdapter<Gallery> {
     }
 
     static final class ViewHolder {
-        @InjectView(R.id.cover)
+        @Bind(R.id.cover)
         ImageView cover;
 
-        @InjectView(R.id.meta)
+        @Bind(R.id.meta)
         TextView meta;
 
-        @InjectView(R.id.title)
+        @Bind(R.id.title)
         TextView title;
 
-        @InjectView(R.id.rating)
+        @Bind(R.id.rating)
         RatingBar rating;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

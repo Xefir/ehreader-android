@@ -39,7 +39,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import tw.skyarrow.ehreader.R;
@@ -62,37 +62,37 @@ import tw.skyarrow.ehreader.util.LoginHelper;
  * Created by SkyArrow on 2014/1/27.
  */
 public class GalleryActivity extends MainDrawerActivity {
-    @InjectView(R.id.meta)
+    @Bind(R.id.meta)
     TextView metaView;
 
-    @InjectView(R.id.title)
+    @Bind(R.id.title)
     TextView titleView;
 
-    @InjectView(R.id.rating)
+    @Bind(R.id.rating)
     RatingBar ratingBar;
 
-    @InjectView(R.id.subtitle)
+    @Bind(R.id.subtitle)
     TextView subtitleView;
 
-    @InjectView(R.id.tags)
+    @Bind(R.id.tags)
     TextView tagView;
 
-    @InjectView(R.id.uploader)
+    @Bind(R.id.uploader)
     TextView uploaderView;
 
-    @InjectView(R.id.created)
+    @Bind(R.id.created)
     TextView createdView;
 
-    @InjectView(R.id.cover_area)
+    @Bind(R.id.cover_area)
     View coverArea;
 
-    @InjectView(R.id.cover_fg)
+    @Bind(R.id.cover_fg)
     ImageView coverForeground;
 
-    @InjectView(R.id.cover_bg)
+    @Bind(R.id.cover_bg)
     ImageView coverBackground;
 
-    @InjectView(R.id.cover_loading)
+    @Bind(R.id.cover_loading)
     ProgressBar coverLoading;
 
     public static final String TAG = "GalleryActivity";
@@ -111,7 +111,7 @@ public class GalleryActivity extends MainDrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_wrap);
         setupDrawer();
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         setDrawerIndicatorEnabled(false);
 
         DatabaseHelper helper = DatabaseHelper.getInstance(this);

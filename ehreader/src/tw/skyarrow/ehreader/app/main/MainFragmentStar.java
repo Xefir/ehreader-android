@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import de.greenrobot.dao.query.QueryBuilder;
 import tw.skyarrow.ehreader.R;
 import tw.skyarrow.ehreader.db.DaoMaster;
@@ -21,7 +21,7 @@ import tw.skyarrow.ehreader.util.DatabaseHelper;
  * Created by SkyArrow on 2014/1/26.
  */
 public class MainFragmentStar extends MainFragmentBase {
-    @InjectView(R.id.error)
+    @Bind(R.id.error)
     TextView errorView;
 
     public static final String TAG = "MainFragmentStar";
@@ -29,7 +29,7 @@ public class MainFragmentStar extends MainFragmentBase {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         DatabaseHelper helper = DatabaseHelper.getInstance(getActivity());
         SQLiteDatabase db = helper.getWritableDatabase();
