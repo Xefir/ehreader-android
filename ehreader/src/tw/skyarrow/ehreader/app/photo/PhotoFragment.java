@@ -205,6 +205,10 @@ public class PhotoFragment extends Fragment {
             case R.id.menu_delete_photo:
                 deletePhoto();
                 return true;
+
+            case R.id.menu_reload:
+                reloadPhoto();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -278,8 +282,7 @@ public class PhotoFragment extends Fragment {
             File photoFile = photo.getFile();
 
             if (photoFile.exists()) {
-                imageLoader.displayImage("file://" + photoFile.getAbsolutePath(), imageView, displayOptions,
-                        imageLoadingListener, imageProgressListener);
+                displayImage("file://" + photoFile.getAbsolutePath());
                 return;
             }
         }
@@ -349,9 +352,14 @@ public class PhotoFragment extends Fragment {
 
     @OnClick(R.id.retry)
     void onRetryBtnClick() {
+        reloadPhoto();
+    }
+
+    private void reloadPhoto() {
         retryBtn.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setIndeterminate(true);
+        imageView.setImageResource(0);
 
         if (photo != null) {
             photo.setInvalid(true);
