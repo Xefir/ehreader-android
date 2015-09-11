@@ -362,6 +362,13 @@ public class PhotoFragment extends Fragment {
         imageView.setImageResource(0);
 
         if (photo != null) {
+            if (photo.getFilename() != null) {
+                File photoFile = photo.getFile();
+                if (photoFile.exists()) {
+                    photoFile.delete();
+                }
+            }
+
             photo.setInvalid(true);
             photoDao.update(photo);
         }
