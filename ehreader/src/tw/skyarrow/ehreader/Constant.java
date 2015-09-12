@@ -26,5 +26,6 @@ public class Constant {
     public static final String FOLDER_NAME = "ehreader";
 
     public static final String AUTHOR_PAGE = "https://twitter.com/tommy351";
-    public static final String HOMEPAGE = "https://github.com/tommy351/ehreader-android";
+    public static final String HACKER_PAGE = "https://twitter.com/Xefir_Destiny";
+    public static final String HOMEPAGE = "https://github.com/xefir/ehreader-android";
 }

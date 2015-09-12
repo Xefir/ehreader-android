@@ -116,6 +116,9 @@ public class PrefFragment extends PreferenceFragment {
 
         Preference sourceCodePref = findPreferenceByResource(R.string.pref_source_code);
         sourceCodePref.setOnPreferenceClickListener(onSourceCodeClick);
+
+        Preference hackerPref = findPreferenceByResource(R.string.pref_hacker);
+        hackerPref.setOnPreferenceClickListener(onHackerClick);
     }
 
     @Override
@@ -212,6 +215,18 @@ public class PrefFragment extends PreferenceFragment {
             Intent intent = new Intent(Intent.ACTION_VIEW);
 
             intent.setData(Uri.parse(Constant.AUTHOR_PAGE));
+            startActivity(intent);
+
+            return true;
+        }
+    };
+
+    private Preference.OnPreferenceClickListener onHackerClick = new Preference.OnPreferenceClickListener() {
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+
+            intent.setData(Uri.parse(Constant.HACKER_PAGE));
             startActivity(intent);
 
             return true;

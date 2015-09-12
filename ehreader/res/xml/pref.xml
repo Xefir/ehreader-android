@@ -120,6 +120,10 @@
             android:title="@string/pref_author_title"
             android:summary="@string/pref_author_summary"/>
         <PreferenceScreen
+                android:key="@string/pref_hacker"
+                android:title="@string/pref_hacker_title"
+                android:summary="@string/pref_hacker_summary"/>
+        <PreferenceScreen
             android:key="@string/pref_source_code"
             android:title="@string/pref_source_code_title"
             android:summary="@string/pref_source_code_summary"/>
