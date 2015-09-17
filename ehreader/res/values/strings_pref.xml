@@ -167,12 +167,10 @@
     <string name="pref_author_title">Author</string>
     <string name="pref_author_summary" translatable="false">SkyArrow (@tommy351)</string>
 
-    <string name="pref_hacker" translatable="false">hacker</string>
-    <string name="pref_hacker_title">Hacker</string>
-    <string name="pref_hacker_summary" translatable="false">Xéfir (@Xefir_Destiny)</string>
-
     <string name="pref_source_code" translatable="false">source_code</string>
+    <string name="pref_fork_code" translatable="false">fork_code</string>
     <string name="pref_source_code_title">Source code</string>
+    <string name="pref_fork_code_title">Fork\'s source code</string>
     <string name="pref_source_code_summary" translatable="false">GitHub</string>
 
     // Dialog: Log in

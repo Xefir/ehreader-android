@@ -117,8 +117,8 @@ public class PrefFragment extends PreferenceFragment {
         Preference sourceCodePref = findPreferenceByResource(R.string.pref_source_code);
         sourceCodePref.setOnPreferenceClickListener(onSourceCodeClick);
 
-        Preference hackerPref = findPreferenceByResource(R.string.pref_hacker);
-        hackerPref.setOnPreferenceClickListener(onHackerClick);
+        Preference forkCodePref = findPreferenceByResource(R.string.pref_fork_code);
+        forkCodePref.setOnPreferenceClickListener(onForkCodeClick);
     }
 
     @Override
@@ -221,24 +221,24 @@ public class PrefFragment extends PreferenceFragment {
         }
     };
 
-    private Preference.OnPreferenceClickListener onHackerClick = new Preference.OnPreferenceClickListener() {
-        @Override
-        public boolean onPreferenceClick(Preference preference) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-
-            intent.setData(Uri.parse(Constant.HACKER_PAGE));
-            startActivity(intent);
-
-            return true;
-        }
-    };
-
     private Preference.OnPreferenceClickListener onSourceCodeClick = new Preference.OnPreferenceClickListener() {
         @Override
         public boolean onPreferenceClick(Preference preference) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
 
             intent.setData(Uri.parse(Constant.HOMEPAGE));
+            startActivity(intent);
+
+            return true;
+        }
+    };
+
+    private Preference.OnPreferenceClickListener onForkCodeClick = new Preference.OnPreferenceClickListener() {
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+
+            intent.setData(Uri.parse(Constant.FORKPAGE));
             startActivity(intent);
 
             return true;
