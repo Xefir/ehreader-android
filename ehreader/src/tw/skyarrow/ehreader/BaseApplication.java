@@ -49,7 +49,7 @@ public class BaseApplication extends Application {
 
             updateHelper.setupAlarm();
             editor.putBoolean(getString(R.string.pref_first_installed), false);
-            editor.commit();
+            editor.apply();
         }
     }
 

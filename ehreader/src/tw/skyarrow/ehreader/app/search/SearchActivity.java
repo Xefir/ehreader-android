@@ -35,7 +35,9 @@ public class SearchActivity extends MainDrawerActivity {
         Intent intent = getIntent();
         ActionBar actionBar = getActionBar();
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean loggedIn = preferences.getBoolean(getString(R.string.pref_logged_in), false);
@@ -51,7 +53,10 @@ public class SearchActivity extends MainDrawerActivity {
             bundle.putString("base", ActionBarHelper.buildSearchUrl(query, loggedIn));
             fragment.setArguments(bundle);
             suggestions.saveRecentQuery(query, null);
-            actionBar.setTitle(query);
+
+            if (actionBar != null) {
+                actionBar.setTitle(query);
+            }
 
             ft.replace(R.id.container, fragment);
             ft.commit();

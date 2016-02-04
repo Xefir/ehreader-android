@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
@@ -84,7 +83,7 @@ public class LoginHelper {
         httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 
-        HttpResponse response = client.execute(httpPost, httpContext);
+        client.execute(httpPost, httpContext);
         List<Cookie> cookies = cookieStore.getCookies();
         String memberId = "";
         String passHash = "";
@@ -113,7 +112,7 @@ public class LoginHelper {
         editor.putString(PREF_LOGIN_MEMBERID, memberId);
         editor.putString(PREF_LOGIN_PASSHASH, passHash);
         editor.putString(PREF_LOGIN_SESSIONID, sessionId);
-        editor.commit();
+        editor.apply();
 
         EventBus.getDefault().post(new LoginEvent(LoginEvent.LOGIN));
         return true;
@@ -125,7 +124,7 @@ public class LoginHelper {
         editor.putBoolean(PREF_LOGGED_IN, false);
         editor.remove(PREF_LOGIN_MEMBERID);
         editor.remove(PREF_LOGIN_PASSHASH);
-        editor.commit();
+        editor.apply();
 
         EventBus.getDefault().post(new LoginEvent(LoginEvent.LOGOUT));
     }

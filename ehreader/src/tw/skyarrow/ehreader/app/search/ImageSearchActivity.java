@@ -33,7 +33,9 @@ public class ImageSearchActivity extends MainDrawerActivity {
         setDrawerIndicatorEnabled(false);
 
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Intent intent = getIntent();

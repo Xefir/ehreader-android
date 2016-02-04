@@ -129,8 +129,10 @@ public class GalleryActivity extends MainDrawerActivity {
 
         ActionBar actionBar = getActionBar();
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         long galleryId = getIntent().getLongExtra(EXTRA_GALLERY, 0);
         gallery = galleryDao.load(galleryId);
@@ -317,8 +319,7 @@ public class GalleryActivity extends MainDrawerActivity {
 
             sp.setSpan(new StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-            for (int i = 0, len = tags.length; i < len; i++) {
-                String tag = tags[i];
+            for (String tag : tags) {
                 int tagLength = tag.length();
 
                 sp.setSpan(new TagSpan(tag), length, length + tagLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

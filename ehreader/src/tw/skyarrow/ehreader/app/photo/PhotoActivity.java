@@ -127,7 +127,9 @@ public class PhotoActivity extends FragmentActivity implements View.OnSystemUiVi
 
         pagerAdapter = new PhotoPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         if (savedInstanceState != null) {
             page = savedInstanceState.getInt(EXTRA_PAGE);
@@ -137,7 +139,10 @@ public class PhotoActivity extends FragmentActivity implements View.OnSystemUiVi
 
         if (page < 0 || page >= total) page = 0;
 
-        actionBar.setTitle(String.format("%d / %d", page + 1, total));
+        if (actionBar != null) {
+            actionBar.setTitle(String.format("%d / %d", page + 1, total));
+        }
+
         setCurrent(page, false);
         seekBar.setMax(total - 1);
         seekBar.setProgress(page);
@@ -159,7 +164,9 @@ public class PhotoActivity extends FragmentActivity implements View.OnSystemUiVi
             @Override
             public void onPageSelected(int i) {
                 seekBar.setProgress(i);
-                actionBar.setTitle(String.format("%s / %s", i + 1, total));
+                if (actionBar != null) {
+                    actionBar.setTitle(String.format("%s / %s", i + 1, total));
+                }
             }
 
             @Override

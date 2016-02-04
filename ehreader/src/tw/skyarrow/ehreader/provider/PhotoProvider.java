@@ -131,9 +131,8 @@ public class PhotoProvider extends ContentProvider {
         if (match != PHOTO_ID) return null;
 
         long photoId = ContentUris.parseId(uri);
-        Photo photo = photoDao.load(photoId);
 
-        return photo;
+        return photoDao.load(photoId);
     }
 
     private File getPhotoFile(Photo photo) {

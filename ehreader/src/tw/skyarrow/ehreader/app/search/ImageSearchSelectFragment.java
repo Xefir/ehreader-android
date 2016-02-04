@@ -157,7 +157,7 @@ public class ImageSearchSelectFragment extends Fragment {
                 Uri uri = uris[0];
                 String[] projection = {MediaStore.Images.ImageColumns.DATA};
                 Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
-                String path = "";
+                String path;
 
                 if (cursor == null) {
                     path = uri.getPath();

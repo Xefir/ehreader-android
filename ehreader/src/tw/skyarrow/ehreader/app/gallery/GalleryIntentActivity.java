@@ -67,8 +67,10 @@ public class GalleryIntentActivity extends FragmentActivity {
 
         ActionBar actionBar = getActionBar();
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         Intent intent = getIntent();
 

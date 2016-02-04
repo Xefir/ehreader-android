@@ -65,11 +65,7 @@ public class PhotoDeleteDialog extends DialogFragment {
 
             File file = photo.getFile();
 
-            if (file.exists()) {
-                return file.delete();
-            }
-
-            return false;
+            return file.exists() && file.delete();
         }
 
         @Override

@@ -125,8 +125,6 @@ public abstract class GalleryBase {
             subtitle = getTitle();
         }
 
-        String[] arr = {title, subtitle};
-
-        return arr;
+        return new String[]{title, subtitle};
     }
 }

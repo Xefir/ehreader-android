@@ -21,7 +21,9 @@ public class PrefActivity extends FragmentActivity {
         setContentView(R.layout.activity_pref);
 
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment fragment = new PrefFragment();

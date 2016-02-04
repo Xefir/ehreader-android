@@ -92,7 +92,7 @@ public class UpdateCheckService extends Service {
                 editor.putBoolean(getString(R.string.pref_update_is_interrupted), true);
                 bus.post(new UpdateCheckEvent(EVENT_ERROR, null));
             } finally {
-                editor.commit();
+                editor.apply();
                 updateHelper.setupAlarm();
                 stopSelf();
             }

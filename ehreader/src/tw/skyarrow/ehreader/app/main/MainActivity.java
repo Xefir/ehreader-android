@@ -1,5 +1,6 @@
 package tw.skyarrow.ehreader.app.main;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -133,7 +134,11 @@ public class MainActivity extends MainDrawerActivity {
                 args.putString(MainFragmentWeb.EXTRA_BASE, loggedIn ? Constant.BASE_URL_EX : Constant.BASE_URL);
         }
 
-        getActionBar().setTitle(actionBarTitle);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(actionBarTitle);
+        }
+
         fragment.setArguments(args);
         ft.replace(R.id.container, fragment, tag);
         ft.commit();
@@ -168,11 +173,17 @@ public class MainActivity extends MainDrawerActivity {
 
     @Override
     public void onDrawerOpened(View view) {
-        getActionBar().setTitle(R.string.app_name);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.app_name);
+        }
     }
 
     @Override
     public void onDrawerClosed(View view) {
-        getActionBar().setTitle(actionBarTitle);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(actionBarTitle);
+        }
     }
 }

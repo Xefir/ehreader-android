@@ -17,17 +17,15 @@ public class HttpRequestHelper {
     public static HttpResponse get(String url) throws IOException {
         HttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
-        HttpResponse response = httpClient.execute(httpGet);
 
-        return response;
+        return httpClient.execute(httpGet);
     }
 
     public static HttpResponse post(String url) throws IOException {
         HttpClient httpClient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url);
-        HttpResponse response = httpClient.execute(httpPost);
 
-        return response;
+        return httpClient.execute(httpPost);
     }
 
     public static String readResponse(HttpResponse response) throws IOException {

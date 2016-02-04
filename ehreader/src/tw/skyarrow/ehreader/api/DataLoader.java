@@ -204,33 +204,36 @@ public class DataLoader {
             String content = HttpRequestHelper.readResponse(response);
 
             List<Photo> list = new ArrayList<Photo>();
-            long galleryId = gallery.getId();
-            Matcher matcher = pPhotoUrl.matcher(content);
 
-            while (matcher.find()) {
-                String token = matcher.group(2);
-                int photoPage = Integer.parseInt(matcher.group(4));
-                Photo photo = getPhotoInDb(galleryId, photoPage);
+            if (content != null) {
+                long galleryId = gallery.getId();
+                Matcher matcher = pPhotoUrl.matcher(content);
 
-                L.d("Photo found: {galleryId: %d, token: %s, page: %d}", galleryId, token, photoPage);
+                while (matcher.find()) {
+                    String token = matcher.group(2);
+                    int photoPage = Integer.parseInt(matcher.group(4));
+                    Photo photo = getPhotoInDb(galleryId, photoPage);
 
-                if (photo != null) {
-                    photo.setToken(token);
-                    photoDao.updateInTx(photo);
-                } else {
-                    photo = new Photo();
+                    L.d("Photo found: {galleryId: %d, token: %s, page: %d}", galleryId, token, photoPage);
 
-                    photo.setGalleryId(galleryId);
-                    photo.setToken(token);
-                    photo.setPage(photoPage);
-                    photo.setDownloaded(false);
-                    photo.setBookmarked(false);
-                    photo.setInvalid(false);
+                    if (photo != null) {
+                        photo.setToken(token);
+                        photoDao.updateInTx(photo);
+                    } else {
+                        photo = new Photo();
 
-                    photoDao.insertInTx(photo);
+                        photo.setGalleryId(galleryId);
+                        photo.setToken(token);
+                        photo.setPage(photoPage);
+                        photo.setDownloaded(false);
+                        photo.setBookmarked(false);
+                        photo.setInvalid(false);
+
+                        photoDao.insertInTx(photo);
+                    }
+
+                    list.add(photo);
                 }
-
-                list.add(photo);
             }
 
             return list;
@@ -293,7 +296,7 @@ public class DataLoader {
                 src = "http://" + matcher.group(2) + "=" + matcher.group(3) + "/" + filename;
             }
 
-            if (src.isEmpty() || filename.isEmpty()) {
+            if (src == null || src.isEmpty() || filename.isEmpty()) {
                 throw new ApiCallException(ApiErrorCode.PHOTO_NOT_FOUND);
             }
 
@@ -425,19 +428,22 @@ public class DataLoader {
             HttpGet httpGet = new HttpGet(url);
             HttpResponse response = getHttpResponse(httpGet);
             String html = HttpRequestHelper.readResponse(response);
-            Matcher matcher = pGalleryURL.matcher(html);
             JSONArray gidlist = new JSONArray();
 
-            while (matcher.find()) {
-                long id = Long.parseLong(matcher.group(2));
-                String token = matcher.group(3);
-                JSONArray arr = new JSONArray();
+            if (html != null) {
+                Matcher matcher = pGalleryURL.matcher(html);
 
-                arr.put(id);
-                arr.put(token);
+                while (matcher.find()) {
+                    long id = Long.parseLong(matcher.group(2));
+                    String token = matcher.group(3);
+                    JSONArray arr = new JSONArray();
 
-                L.d("Gallery found: {id: %d, token: %s}", id, token);
-                gidlist.put(arr);
+                    arr.put(id);
+                    arr.put(token);
+
+                    L.d("Gallery found: {id: %d, token: %s}", id, token);
+                    gidlist.put(arr);
+                }
             }
 
             return getGalleryList(gidlist);
