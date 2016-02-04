@@ -127,6 +127,7 @@ public class PhotoActivity extends FragmentActivity implements View.OnSystemUiVi
 
         pagerAdapter = new PhotoPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
+
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
